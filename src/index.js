@@ -14,14 +14,7 @@ const findTopics = async (sub, id) => {
   if (items.length === 0) return []
 
   // Copy 'guid' to 'id' for caching, and add a non-HTML description limited to 350 characters.
-  const allItems = items.map(entry => ({ ...entry, id: entry.guid, descriptionText: removeHTML(entry.description, 350) }))
-  const newItems = await removeCached(accountCacheID, allItems)
-
-  // Add the remaining items to the database.
-  cacheItems(accountCacheID, newItems)
-
-  // Now we can send these results to the channel.
-  return newItems
+  return items.map(entry => ({ ...entry, id: entry.guid, descriptionText: removeHTML(entry.description, 350) }))
 }
 
 /**

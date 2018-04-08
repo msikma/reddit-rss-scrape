@@ -28,7 +28,7 @@ var urlSubRSS = function urlSubRSS(sub) {
 
 var findTopics = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sub, id) {
-    var items, allItems, newItems;
+    var items;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -47,25 +47,11 @@ var findTopics = function () {
             return _context.abrupt('return', []);
 
           case 5:
-
-            // Copy 'guid' to 'id' for caching, and add a non-HTML description limited to 350 characters.
-            allItems = items.map(function (entry) {
+            return _context.abrupt('return', items.map(function (entry) {
               return _extends({}, entry, { id: entry.guid, descriptionText: removeHTML(entry.description, 350) });
-            });
-            _context.next = 8;
-            return removeCached(accountCacheID, allItems);
+            }));
 
-          case 8:
-            newItems = _context.sent;
-
-
-            // Add the remaining items to the database.
-            cacheItems(accountCacheID, newItems);
-
-            // Now we can send these results to the channel.
-            return _context.abrupt('return', newItems);
-
-          case 11:
+          case 6:
           case 'end':
             return _context.stop();
         }
