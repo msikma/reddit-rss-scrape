@@ -1,0 +1,33 @@
+{
+  "name": "reddit-rss-scrape",
+  "description": "Reddit RSS scraper",
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/reddit-rss-scrape",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "cross-env NODE_PATH=./ eslint src; exit 0",
+    "build": "babel src --presets babel-preset-env --plugins transform-class-properties,transform-object-rest-spread --out-dir dist"
+  },
+  "repository": "https://github.com/msikma/reddit-rss-scrape",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-class-properties": "^6.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.1.0",
+    "babel-polyfill": "^6.1.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.1.0",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.1.0",
+    "eslint-plugin-react": "^7.2.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "parse-rss": "^1.0.3",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
