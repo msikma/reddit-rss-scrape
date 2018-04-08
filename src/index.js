@@ -7,10 +7,10 @@ import cheerio from 'cheerio'
 import rssParser from 'parse-rss'
 
 // Returns the URL of a sub's RSS feed.
-const urlSubRSS = sub => `https://www.reddit.com/r/${sub}/.rss`
+const urlSubRSS = (sub, type = '') => `https://www.reddit.com/r/${sub}/${type}.rss`
 
-const findTopics = async (sub, id) => {
-  const items = await rssParse(urlSubRSS(sub))
+const findTopics = async (sub, type = '') => {
+  const items = await rssParse(urlSubRSS(sub, type))
   if (items.length === 0) return []
 
   // Copy 'guid' to 'id' for caching, and add a non-HTML description limited to 350 characters.

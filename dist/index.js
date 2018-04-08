@@ -23,18 +23,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 // Returns the URL of a sub's RSS feed.
 var urlSubRSS = function urlSubRSS(sub) {
-  return 'https://www.reddit.com/r/' + sub + '/.rss';
+  var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return 'https://www.reddit.com/r/' + sub + '/' + type + '.rss';
 };
 
 var findTopics = function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sub, id) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sub) {
+    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
     var items;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return rssParse(urlSubRSS(sub));
+            return rssParse(urlSubRSS(sub, type));
 
           case 2:
             items = _context.sent;
@@ -59,7 +61,7 @@ var findTopics = function () {
     }, _callee, undefined);
   }));
 
-  return function findTopics(_x, _x2) {
+  return function findTopics(_x3) {
     return _ref.apply(this, arguments);
   };
 }();
