@@ -10,11 +10,24 @@ import rssParser from 'parse-rss'
 const urlSubRSS = (sub, type = '') => `https://www.reddit.com/r/${sub}/${type}.rss`
 
 const findTopics = async (sub, type = '') => {
-  const items = await rssParse(urlSubRSS(sub, type))
-  if (items.length === 0) return []
+  const url = urlSubRSS(sub, type)
+  try {
+    const items = await rssParse(url)
+    if (items.length === 0) return []
 
-  // Copy 'guid' to 'id' for caching, and add a non-HTML description limited to 350 characters.
-  return items.map(entry => ({ ...entry, id: entry.guid, descriptionText: removeHTML(entry.description, 350) }))
+    // Copy 'guid' to 'id' for caching, and add a non-HTML description limited to 350 characters.
+    return {
+      url,
+      items: items.map(entry => ({ ...entry, id: entry.guid, descriptionText: removeHTML(entry.description, 350) }))
+    }
+  }
+  catch (error) {
+    // If something went wrong, return the error and URL for testing.
+    return {
+      url,
+      error
+    }
+  }
 }
 
 /**
