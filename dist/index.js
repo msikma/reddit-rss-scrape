@@ -30,35 +30,48 @@ var urlSubRSS = function urlSubRSS(sub) {
 var findTopics = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sub) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-    var items;
+    var url, items;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
-            return rssParse(urlSubRSS(sub, type));
+            url = urlSubRSS(sub, type);
+            _context.prev = 1;
+            _context.next = 4;
+            return rssParse(url);
 
-          case 2:
+          case 4:
             items = _context.sent;
 
             if (!(items.length === 0)) {
-              _context.next = 5;
+              _context.next = 7;
               break;
             }
 
             return _context.abrupt('return', []);
 
-          case 5:
-            return _context.abrupt('return', items.map(function (entry) {
-              return _extends({}, entry, { id: entry.guid, descriptionText: removeHTML(entry.description, 350) });
-            }));
+          case 7:
+            return _context.abrupt('return', {
+              url: url,
+              items: items.map(function (entry) {
+                return _extends({}, entry, { id: entry.guid, descriptionText: removeHTML(entry.description, 350) });
+              })
+            });
 
-          case 6:
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context['catch'](1);
+            return _context.abrupt('return', {
+              url: url,
+              error: _context.t0
+            });
+
+          case 13:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, undefined);
+    }, _callee, undefined, [[1, 10]]);
   }));
 
   return function findTopics(_x3) {
