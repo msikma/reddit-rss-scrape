@@ -42,15 +42,6 @@ var findTopics = function () {
 
           case 4:
             items = _context.sent;
-
-            if (!(items.length === 0)) {
-              _context.next = 7;
-              break;
-            }
-
-            return _context.abrupt('return', []);
-
-          case 7:
             return _context.abrupt('return', {
               url: url,
               items: items.map(function (entry) {
@@ -58,20 +49,20 @@ var findTopics = function () {
               })
             });
 
-          case 10:
-            _context.prev = 10;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context['catch'](1);
             return _context.abrupt('return', {
               url: url,
               error: _context.t0
             });
 
-          case 13:
+          case 11:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, undefined, [[1, 10]]);
+    }, _callee, undefined, [[1, 8]]);
   }));
 
   return function findTopics(_x3) {

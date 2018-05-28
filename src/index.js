@@ -13,7 +13,6 @@ const findTopics = async (sub, type = '') => {
   const url = urlSubRSS(sub, type)
   try {
     const items = await rssParse(url)
-    if (items.length === 0) return []
 
     // Copy 'guid' to 'id' for caching, and add a non-HTML description limited to 350 characters.
     return {
